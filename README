@@ -1,3 +1,34 @@
 To run the Java code:
 
-    javac converter/*
+    javac converter/*.java
+    java converter.FrameInJava
+    
+To run Clojure example, start a REPL in the directory where the converter.clj file is.  Make sure the REPL has clojure and the current directory on your classpath.  If you don't already have a clojure shell script for that, this will work:
+
+     $ java -cp .:/Users/pbarry/src/clojure/clojure.jar clojure.lang.Repl
+     
+Obviously, change the path to the clojure.jar file.  Note that the Unix ~ alias for the home directory doesn't work for specifying the classpath.  Once you have the REPL running, first use the converter library:
+
+    user=> (use 'converter)
+    nil
+    
+Now the library is loaded, but we haven't called the function to start the app yet:
+
+    user=> (def frame (converter))
+    #'user/frame 
+    
+At this point, the Swing app should be visible.  If you don't see it, it is probably hiding behind other windows.  But that's ok, this is Clojure, so we can interact with our running Swing app.  Let's bring it to the front:
+
+    user=> (bring-to-front frame)
+    nil
+
+Now you see it?  We can make modifications to our running app.  Let's change the border size:
+
+    user=> (set-border-size frame 5)
+    nil
+
+You can also move the window around, and then run this function to bring it back to the center:
+
+    user=> (center-on-screen frame)
+    nil
+    

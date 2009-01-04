@@ -55,7 +55,13 @@
 	y (/ (- (.getWidth s-size) (.getWidth f-size)) 2)]
     (.setLocation frame (int x) (int y))))
 
-(defn set-border
+(defn bring-to-front
+  "Brings the frame to the front"
+  [frame]
+  (.setAlwaysOnTop frame true) 
+  (.setAlwaysOnTop frame false))
+
+(defn set-border-size
   "Set the border of the given frame to the given width"
   [frame w]
   (.setBorder
@@ -172,7 +178,7 @@
 	(.add (create-buttons-panel) BorderLayout/SOUTH)
 	(.setJMenuBar (create-menu-bar))
 	(.setDefaultCloseOperation JFrame/EXIT_ON_CLOSE)
-	(set-border 12)
+	(set-border-size 12)
 	(.setVisible true)
 	(center-on-screen))))
 
